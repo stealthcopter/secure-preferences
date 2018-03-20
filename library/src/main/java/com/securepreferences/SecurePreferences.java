@@ -379,7 +379,7 @@ public class SecurePreferences implements SharedPreferences, SecretKeyDatasource
      */
     @SuppressLint("ApplySharedPref")
     @Override
-    public void migrateValues(PrefValueEncrypter newValueEncrypter) {
+    public void migrateValues(@Nullable PrefValueEncrypter newValueEncrypter) {
         Set<String> prefKeys = getAllKeysExcludingEncryptionKey();
 
         Map<String, String> unencryptedPrefs = new HashMap<>(prefKeys.size());
@@ -393,7 +393,14 @@ public class SecurePreferences implements SharedPreferences, SecretKeyDatasource
 
         edit().clear().commit();
 
-        prefValueEncrypter = newValueEncrypter;
+        // We only need to provide a newvalue encrypted if we dont already have one
+        if (newValueEncrypter != null) {
+            prefValueEncrypter = newValueEncrypter;
+        }
+
+        if (prefValueEncrypter == null){
+            throw new RuntimeException("No Value Encrypter provided");
+        }
 
         try {
             SharedPreferences.Editor editor = getEditorNotEncrypted();

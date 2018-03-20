@@ -27,7 +27,6 @@ android {
     }
 
     compileSdkVersion 27
-    buildToolsVersion '26.0.3'
 
     defaultConfig {
         minSdkVersion 14
