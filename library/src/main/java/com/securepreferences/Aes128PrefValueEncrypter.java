@@ -25,7 +25,7 @@ public class Aes128PrefValueEncrypter implements PrefValueEncrypter{
     private final SecretKeyDatasource secretKeyDatasource;
     private SecretKeySpec mKey;
 
-    Aes128PrefValueEncrypter(Encoder encoder, SecretKeyDatasource secretKeyDatasource) {
+    public Aes128PrefValueEncrypter(Encoder encoder, SecretKeyDatasource secretKeyDatasource) {
         this.secretKeyDatasource = secretKeyDatasource;
         mSecureRandom = new SecureRandom();
         mEncoder = encoder;
