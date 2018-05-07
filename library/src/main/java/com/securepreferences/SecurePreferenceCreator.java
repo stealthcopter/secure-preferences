@@ -62,7 +62,7 @@ public class SecurePreferenceCreator {
         return createSecurePreferences(sharedPreferences, new NoOpPrefKeyObfuscator());
     }
 
-    private static SecurePreferences createSecurePreferences(SharedPreferences sharedPreferences, PrefKeyObfuscator keyObfuscator) {
+    public static SecurePreferences createSecurePreferences(SharedPreferences sharedPreferences, PrefKeyObfuscator keyObfuscator) {
         SecurePreferences prefs = new SecurePreferences(sharedPreferences, keyObfuscator, null);
         Aes128PrefValueEncrypter valueEncrypter = new Aes128PrefValueEncrypter(new Encoder(), prefs);
         prefs.setValueEncrypter(valueEncrypter);
