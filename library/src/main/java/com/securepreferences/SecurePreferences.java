@@ -298,7 +298,8 @@ public class SecurePreferences implements SharedPreferences, SecretKeyDatasource
             String obfuscatedKey = obfuscatedKeyName(key);
             try {
                 String cipherText = prefValueEncrypter.encrypt(value);
-                return mEditor.putString(obfuscatedKey, cipherText);
+                mEditor.putString(obfuscatedKey, cipherText);
+                return this;
             } catch (GeneralSecurityException e) {
                 throw new SecurityException(e);
             }
@@ -347,7 +348,8 @@ public class SecurePreferences implements SharedPreferences, SecretKeyDatasource
         @Override
         public Editor remove(String key) {
             String obfuscatedKey = obfuscatedKeyName(key);
-            return mEditor.remove(obfuscatedKey);
+            mEditor.remove(obfuscatedKey);
+            return this;
         }
 
         @Override
