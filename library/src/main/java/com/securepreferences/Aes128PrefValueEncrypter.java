@@ -101,6 +101,12 @@ public class Aes128PrefValueEncrypter implements PrefValueEncrypter{
 
     @Override
     public String encrypt(String plainText) throws GeneralSecurityException {
+
+        if (plainText == null){
+            // Avoid NPE by creating empty strings
+            plainText = "";
+        }
+
         final Cipher cipher = Cipher.getInstance(METHOD);
 
         byte[] iv = generateIV();

@@ -9,11 +9,11 @@ public class Encoder {
 
     private static final int ENCODING_FLAGS = Base64.NO_PADDING | Base64.NO_WRAP;
 
-    String encode(byte[] value) {
+    public String encode(byte[] value) {
         return Base64.encodeToString(value, ENCODING_FLAGS);
     }
 
-    byte[] decode(String value) {
+    public byte[] decode(String value) {
         return Base64.decode(value, ENCODING_FLAGS);
     }
 
